@@ -8,6 +8,9 @@ import 'solidity-coverage'
 
 import * as fs from 'fs'
 
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 const SALT = '0x90d8084deab30c2a37c45e8d47f49f2f7965183cb6990a98943ef94940681de3'
 process.env.SALT = process.env.SALT ?? SALT
 
@@ -26,6 +29,7 @@ function getNetwork1 (url: string): { url: string, accounts: { mnemonic: string 
 }
 
 function getNetwork (name: string): { url: string, accounts: { mnemonic: string } } {
+  console.log(process.env.INFURA_ID)
   return getNetwork1(`https://${name}.infura.io/v3/${process.env.INFURA_ID}`)
   // return getNetwork1(`wss://${name}.infura.io/ws/v3/${process.env.INFURA_ID}`)
 }
